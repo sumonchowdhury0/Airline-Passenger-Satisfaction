@@ -1,0 +1,85 @@
+<!doctype1 html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('https://cdn.britannica.com/21/118521-050-6A212FF6/Continental-Airlines-Boeing-757-2005.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: lightgreen;
+            height: 90vh;
+            margin: 0;
+        }
+        form {
+            margin:auto;
+            width:35%;
+        }
+        .result {
+            margin:auto;
+            width:25%;
+            
+        }
+        /* Style for the labels */
+        label {
+            color: blue; /* Change the color value to your desired color */
+        }
+    </style>
+    <h1 style="font-size:200%;color:red;">Airline Passenger Satisfaction</h1>
+</head>
+<body>
+    <form action="{{ url_for('main') }}" method="POST">
+        <fieldset>
+            <legend>Input Values:</legend>
+            <!-- Added 'label' tags for the labels -->
+            <label for="age">Age:</label><span style="color:red">*</span>
+            <input id="age" name="age" type="number" required>
+            <br>
+            <br>
+            <label for="ease_of_online_booking">Ease of Online Booking:</label><span style="color:red">*</span>
+            <input id="ease_of_online_booking" name="ease_of_online_booking" type="number" required>
+            <br>
+            <br>
+            <label for="gate_location">Gate location:</label><span style="color:red">*</span>
+            <input id="gate_location" name="gate_location" type="number" required>
+            <br>
+            <br>
+            <label for="food_and_drink">Food and Drink:</label><span style="color:red">*</span>
+            <input id="food_and_drink" name="food_and_drink" type="number" required>
+            <br>
+            <br>
+            <label for="online_boarding">Online Boarding:</label><span style="color:red">*</span>
+            <input id="online_boarding" name="online_boarding" type="number" required>
+            <br>
+            <br>
+            <label for="seat_comfort">Seat Comfort:</label><span style="color:red">*</span>
+            <input id="seat_comfort" name="seat_comfort" type="number" required>
+            <br>
+            <br>
+            <label for="baggage_handling">Baggage Handling:</label><span style="color:red">*</span>
+            <input id="baggage_handling" name="baggage_handling" type="number" required>
+            <br>
+            <br>
+            <label for="inflight_service">Inflight Service:</label><span style="color:red">*</span>
+            <input id="inflight_service" name="inflight_service" type="number" required>
+            <br>
+            <br>
+            <label for="cleanliness">Cleanliness:</label><span style="color:red">*</span>
+            <input id="cleanliness" name="cleanliness" type="number" required>
+            <br>
+            <br>
+            <input type="submit">
+        </fieldset>
+    </form>   
+    <br> 
+    <div class="result" align="center"> 
+   {% if result %}
+        {% for variable,value in original_input.items()%}
+        <b>{{variable}}</b> :{{value}}
+        {% endfor %}
+        <p style="font-size:130%;color:white;">Predicted Passenger Satisfaction:</p>
+        <p style=font-size:35px;color:yellow;">{{result}}</p>
+        {% endif %} 
+    </div>
+</body>
+</html>

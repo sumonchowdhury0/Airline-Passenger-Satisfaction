@@ -1,0 +1,40 @@
+import flask
+from flask import Flask,request,render_template
+import pickle
+import numpy as np
+import pandas as pd
+
+
+with open(f'models/model.pkl','rb') as f:
+    model=pickle.load(f)
+
+app=flask.Flask(_name_,template_folder="template")
+
+@app.route('/',methods=['GET','POST'])
+
+def main():
+    if flask.requests.method=='GET':
+        return (flask.render_template('!doctype1.html'))
+    
+    if flask.request.method=='POST':
+        Age=flask.request.form['age']
+        Ease of Online Booking=flask.request.form['ease_of_online_booking']
+        Gate location=flask.request.form['gate_location']
+        Food and Drink=flask.request.form['food_and_drink']
+        Online Boarding=flask.request.form['online_boarding']
+        Seat Comfort=flask.request.form['seat_comfort']
+        Baggage Handling=flask.request.form['baggage_handling']
+        Inflight Service=flask.request.form['inflight_service']
+        Cleanliness=flask.request.form['cleanliness']
+        
+        input_variables=pd.DataFrame([[Age,Ease of Online Booking,Gate location,Food and Drink,Online Boarding,Seat Comfort,Baggage Handling,Inflight Service,Cleanliness]],columns=["age","ease_of_online_booking","gate_location","food_and_drink","online_boarding","seat_comfort",
+        "baggage_handling","inflight_service","cleanliness"],index=['Input'])
+        prediction=model.predict(input_variables)[0]
+        
+        return flask.render_templates('index.html',original_input={'Age':age,'Ease of Online Booking':ease_of_online_booking,'Gate location':gate_location,
+                                                                  'Food and Drink':food_and_drink,'Online Boarding':online_boarding,'Seat Comfort':seat_comfort,
+                                                                   'Baggage Handling':baggage_handling,'Inflight Service':inflight_service,'Cleanliness':cleanliness},result=prediction,)
+    
+    
+if _name=='main_':
+    app.run()
