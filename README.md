@@ -73,3 +73,11 @@ Departure Delay in Minutes: Minutes delayed when departure
 Arrival Delay in Minutes: Minutes delayed when Arrival
 
 Satisfaction: Airline satisfaction level(Satisfaction, neutral or dissatisfaction)
+
+## Conclusion: 
+Based on the evaluation metrics provided for the 
+classification models, the Random Forest model demonstrates superior 
+performance compared to the other models listed. It achieves the highest 
+AUC score, precision score, accuracy score, kappa score, and F1-score. 
+Therefore, if the goal is to select the best-performing model based on these 
+metrics, the Random Forest model would be the preferred choice
